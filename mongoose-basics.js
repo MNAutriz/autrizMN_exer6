@@ -1,20 +1,22 @@
+
+
 import mongoose from 'mongoose';
 
 
 // connection string
-await mongoose.connect('mongodb+srv://mgautriz:TSkSBUBSwQeOSCWD@cluster0.afdttnk.mongodb.net', { useNewUrlParser: true, useUnifiedTopology: true });
+await mongoose.connect('mongodb+srv://mgautriz:TSkSBUBSwQeOSCWD@cluster0.afdttnk.mongodb.net/ICS', { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Subject model with forced collection name (e.g. topics)
-const Student = mongoose.model('student', {
+const Student = mongoose.model('students', {
   stdnum: Number,
   fname: String,
   lname: String,
   age: Number
-}, 'student')
+})
 
 // the result parameter will contain a single object (the first matching document found
 // if no matching document was found, result will be null
-let data = await Student.findOne({ fname: "Peter", lname: "Parker" });
+let data = await Student.findOne({age: 36});
 console.log(data);
 
 // results here will always be an array, regardless of how many matching documents were found
