@@ -2,23 +2,15 @@ import mongoose from 'mongoose';
 
 
 // connection string
-await mongoose.connect('mongodb://127.0.0.1:27017/<PUT DB NAME HERE>', { useNewUrlParser: true, useUnifiedTopology: true });
-
-// // Subject model
-// const Student = mongoose.model('Student', {
-//   stdnum: String,
-//   fname: String,
-//   lname: String,
-//   age: Number
-// })
+await mongoose.connect('mongodb+srv://mgautriz:TSkSBUBSwQeOSCWD@cluster0.afdttnk.mongodb.net', { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Subject model with forced collection name (e.g. topics)
-const Student = mongoose.model('Subject', {
-  stdnum: String,
+const Student = mongoose.model('student', {
+  stdnum: Number,
   fname: String,
   lname: String,
   age: Number
-}, 'studentData')
+}, 'student')
 
 // the result parameter will contain a single object (the first matching document found
 // if no matching document was found, result will be null
@@ -29,3 +21,11 @@ console.log(data);
 // let data = await Student.find({ age: 17 });
 // console.log(data);
 
+const newStudent = new Student({
+    stdnum: "12345678",
+    fname: "Juan",
+    lname: "dela Cruz",
+    age: 20
+});
+
+await newStudent.save();
